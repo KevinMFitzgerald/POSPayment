@@ -10,7 +10,7 @@ public interface InventoryClient {
     @PutMapping("/api/inventory/products/{id}/decrement")
     String decrementStock(@PathVariable("id") Long productId, @RequestBody DecrementRequest request);
     @GetMapping("/api/inventory/products/{id}")
-    ProductDto getProductById(@PathVariable("id") Long productId);
+    ProductDto getProductById(@PathVariable Long id);
 
     @Data
     class ProductDto {

@@ -1,5 +1,6 @@
 package ie.atu.pospaymentservice.controller;
 
+import ie.atu.pospaymentservice.client.PaymentClient.PurchaseRequest;
 import ie.atu.pospaymentservice.model.BuyerBalance;
 import ie.atu.pospaymentservice.service.PaymentService;
 import lombok.Data;
@@ -34,9 +35,8 @@ public class PaymentController {
     public ResponseEntity<?> purchase(@RequestBody PurchaseRequest req) {
         String result = paymentService.purchase(
                 req.getBuyerUsername(),
-                req.getProductId(),
-                req.getTotalCost(),
-                req.getQuantity()
+                req.getItems(),
+                req.getTotalCost()
         );
         if (result.startsWith("Purchase successful")) {
             return ResponseEntity.ok(result);
@@ -49,13 +49,5 @@ public class PaymentController {
     static class AllocateRequest {
         private String buyerUsername;
         private double amount;
-    }
-
-    @Data
-    static class PurchaseRequest {
-        private String buyerUsername;
-        private Long productId;
-        private double totalCost;
-        private int quantity;
     }
 }

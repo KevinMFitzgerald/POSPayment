@@ -1,6 +1,8 @@
 package ie.atu.pospaymentservice.client;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,8 @@ public interface InventoryClient {
     @GetMapping("/api/inventory/products/{id}")
     ProductDto getProductById(@PathVariable Long id);
 
+    @AllArgsConstructor
+    @NoArgsConstructor
     @Data
     class ProductDto {
         private Long id;
@@ -20,6 +24,8 @@ public interface InventoryClient {
         private double price;
         private int quantity;
     }
+    @AllArgsConstructor
+    @NoArgsConstructor
     @Data
     class DecrementRequest {
         private int amount;

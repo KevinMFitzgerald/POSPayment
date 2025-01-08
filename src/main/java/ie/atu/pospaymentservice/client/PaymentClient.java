@@ -1,6 +1,8 @@
 package ie.atu.pospaymentservice.client;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,13 +23,16 @@ public interface PaymentClient {
         private String buyerUsername;
         private double amount;
     }
-
+    @AllArgsConstructor
+    @NoArgsConstructor
     @Data
      class PurchaseRequest {
         private String buyerUsername;
         private List<ItemDto> items;
         private double totalCost;
 
+        @AllArgsConstructor
+        @NoArgsConstructor
         @Data
         public static class ItemDto {
             private Long productId;

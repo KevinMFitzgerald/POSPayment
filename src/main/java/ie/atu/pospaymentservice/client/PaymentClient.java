@@ -13,8 +13,17 @@ public interface PaymentClient {
     @PostMapping("/api/payment/purchase")
     String purchase(@RequestBody PurchaseRequest req);
 
+    @PostMapping("/api/payment/allocate")
+    String allocate(@RequestBody AllocateRequest request);
+
     @Data
-    public static class PurchaseRequest {
+    class AllocateRequest {
+        private String buyerUsername;
+        private double amount;
+    }
+
+    @Data
+     class PurchaseRequest {
         private String buyerUsername;
         private List<ItemDto> items;
         private double totalCost;

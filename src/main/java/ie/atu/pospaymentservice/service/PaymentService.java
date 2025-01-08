@@ -39,7 +39,6 @@ public class PaymentService {
             return "Insufficient balance!";
         }
 
-        // Step 1: Decrement stock for all items
         for (PaymentClient.PurchaseRequest.ItemDto item : items) {
             InventoryClient.DecrementRequest reserveRequest = new InventoryClient.DecrementRequest();
             reserveRequest.setAmount(item.getQuantity());
@@ -50,7 +49,6 @@ public class PaymentService {
             }
         }
 
-        // Step 2: Deduct total cost from balance
         balance.setBalance(balance.getBalance() - totalCost);
         balanceRepo.save(balance);
 
